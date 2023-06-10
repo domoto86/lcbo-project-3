@@ -1,23 +1,34 @@
+<<<<<<< HEAD
+.jumbotron{
+    background-color: white;
+}
+.panel-title {
+    color: black;
+}
+.panel-primary>.panel-heading {
+    background-color: aqua;
+=======
 .jumbotron h1 {
-    color:aliceblue
+    color: white;
 }
 
 .jumbotron p {
-    color:aliceblue
+    color:white;
 }
 
-.white-text h2 {
-    color: aliceblue;
+.black-text h2 {
+    color: black;
 }
 
 .aliceblue-text p {
-    color: aliceblue;
+    color: white;
 }
 
 .col-md-12 p {
-    color: aliceblue;
+    color: white;
 }
 
 body {
-    background-color: rgb(61, 59, 66);
+    background-color:white;
+>>>>>>> 5328eff615b8a3c63490d64cc71b80ef406c5ec9
 }
