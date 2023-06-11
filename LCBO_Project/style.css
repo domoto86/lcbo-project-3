@@ -1,37 +1,11 @@
-<<<<<<< HEAD
-.jumbotron{
+.jumbotron {
     background-color: white;
 }
-.panel-title {
-    color: black;
-}
 .panel-primary>.panel-heading {
-    background-color: aqua;
-=======
-.jumbotron h1 {
-    color: white;
-}
-
-.jumbotron p {
-    color:white;
-}
-
-.black-text h2 {
     color: black;
+    background-color: aquamarine;
 }
-
-.aliceblue-text p {
-    color: white;
-}
-
-.col-md-12 p {
-    color: white;
-}
-
-body {
-    background-color:white;
-<<<<<<< HEAD
->>>>>>> 5328eff615b8a3c63490d64cc71b80ef406c5ec9
-=======
->>>>>>> 5328eff615b8a3c63490d64cc71b80ef406c5ec9
+.well {
+    background-color: aquamarine;
+    border: 1px solid #337ab7;
 }
