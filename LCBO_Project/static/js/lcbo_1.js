@@ -1,6 +1,6 @@
 // The url with data
 const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
-
+// const url = "/api/data"
 // Display the default plots
 function init() {
 
@@ -27,7 +27,7 @@ function init() {
         // Call the functions to make the demographic panel, bar chart, and bubble chart
         demo(name);
         bar(name);
-        bubble(name);
+        // bubble(name);
         gauge(name);
     });
 }
@@ -101,41 +101,41 @@ function bar(selectedValue) {
 }
   
 // Make the bubble chart
-function bubble(selectedValue) {
-    // Fetch the JSON data and console log it
-    d3.json(url).then((data) => {
+// function bubble(selectedValue) {
+//     // Fetch the JSON data and console log it
+//     d3.json(url).then((data) => {
 
-        // An array of sample objects
-        let samples = data.samples;
+//         // An array of sample objects
+//         let samples = data.samples;
     
-        // Filter data where id = selected value 
-        let filteredData = samples.filter((sample) => sample.id === selectedValue);
+//         // Filter data where id = selected value 
+//         let filteredData = samples.filter((sample) => sample.id === selectedValue);
     
-        // Assign the first object to obj variable
-        let obj = filteredData[0];
+//         // Assign the first object to obj variable
+//         let obj = filteredData[0];
         
-        // Trace for the data for the bubble chart
-        let trace = [{
-            x: obj.otu_ids,
-            y: obj.sample_values,
-            text: obj.otu_labels,
-            mode: "markers",
-            marker: {
-                size: obj.sample_values,
-                color: obj.otu_ids,
-                colorscale: "Sunset"
-            }
-        }];
+//         // Trace for the data for the bubble chart
+//         let trace = [{
+//             x: obj.otu_ids,
+//             y: obj.sample_values,
+//             text: obj.otu_labels,
+//             mode: "markers",
+//             marker: {
+//                 size: obj.sample_values,
+//                 color: obj.otu_ids,
+//                 colorscale: "Sunset"
+//             }
+//         }];
     
-        // Apply the x-axis lengend to the layout
-        let layout = {
-            xaxis: {title: "OTU ID"}
-        };
+//         // Apply the x-axis lengend to the layout
+//         let layout = {
+//             xaxis: {title: "OTU ID"}
+//         };
     
-        // Use Plotly to plot the data in a bubble chart
-        Plotly.newPlot("bubble", trace, layout);
-    });
-}
+//         // Use Plotly to plot the data in a bubble chart
+//         Plotly.newPlot("bubble", trace, layout);
+//     });
+// }
 
 // Make the gauge chart 
 function gauge(selectedValue) {
@@ -155,7 +155,7 @@ function gauge(selectedValue) {
         let trace = [{
             domain: { x: [0, 1], y: [0, 1] },
             value: obj.wfreq,
-            title: { text: "<b>Belly Button Washing Frequency</b><br>Scrubs per Week", font: {size: 24}},
+            title: { text: "<b>Alcohol by Volume</b><br>(in %)", font: {size: 24}},
             type: "indicator", 
             mode: "gauge+number",
             gauge: {
@@ -185,7 +185,7 @@ function gauge(selectedValue) {
 function optionChanged(selectedValue) {
     demo(selectedValue);
     bar(selectedValue);
-    bubble(selectedValue);
+    // bubble(selectedValue);
     gauge(selectedValue)
 }
 
