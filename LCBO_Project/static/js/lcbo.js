@@ -28,40 +28,7 @@ fetch(url3)
     } else {
       console.log("Invalid data format. Expected an array.");
     }
-<<<<<<< Updated upstream
-  ];
-  
-  
-  // Loop through the cities array, and create one marker for each city object.
-  for (let i = 0; i < countries.length; i++) {
-  
-    // Conditionals for country gdp_pc
-    let color = "";
-    if (countries[i].gdp_pc > 100000) {
-      color = "#A51C42";
-    }
-    else if (countries[i].gdp_pc > 75000) {
-      color = "#D8B438";
-    }
-    else if (countries[i].gdp_pc > 50000) {
-      color = "#E3DCB6";
-    }
-    else {
-      color = "#612E42";
-    }
-  
-    // Add circles to the map.
-    L.circle(countries[i].location, {
-      fillOpacity: 0.75,
-      color: "white",
-      fillColor: color,
-      // Adjust the radius.
-      radius: Math.sqrt(countries[i].gdp_pc) * 500
-    }).bindPopup(`<h1>${countries[i].name}</h1> <hr> <h3>GDP Per Capita (USD): ${countries[i].gdp_pc}</h3>`).addTo(myMap);
-  }
-=======
   })
   .catch(error => {
     console.log("Error fetching data:", error);
   });
->>>>>>> Stashed changes

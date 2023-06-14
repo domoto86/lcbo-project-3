@@ -1,12 +1,6 @@
-<<<<<<< Updated upstream
 // The url with data
 const url1 = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_1.json"
 const url2 = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_2.json"
-=======
-// // The url with data
-const url = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_wines.json"
-
->>>>>>> Stashed changes
 // const url = "/api/data"
 // Display the default plots
 function init() {
@@ -15,19 +9,11 @@ function init() {
     let dropdownMenu = d3.select("#selDataset");
 
     // Fetch the JSON data and console log it
-<<<<<<< Updated upstream
     d3.json(url1).then((data1) => {
         console.log(data1);
 
         // An array of id names
         let names = data1.name;
-=======
-    d3.json(url).then((data) => {
-        console.log(data);
-
-        // An array of id names
-        let names = data.Name;
->>>>>>> Stashed changes
 
         // Iterate through the names Array
         names.forEach((name) => {
@@ -50,13 +36,8 @@ function init() {
 // Make the demographics panel
 function demo(selectedValue) {
     // Fetch the JSON data and console log it
-<<<<<<< Updated upstream
     d3.json(url2).then((data2) => {
         console.log(data2);
-=======
-    d3.json(url).then((data) => {
-        console.log(data);
->>>>>>> Stashed changes
 
         // An array of metadata objects
         let metaname = data2;
@@ -103,39 +84,10 @@ function bar() {
     // Clean up the data by removing leading/trailing spaces
     let cleanedData = madeInData.map((made_in) => made_in.trim());
 
-<<<<<<< Updated upstream
-        // Assign the first object to obj variable
-        let obj = filteredData[0];
-        
-        // Trace for the data for the horizontal bar chart
-        let trace = [{
-            // Slice the top 10 otus
-            x: obj.sample_values.slice(0,10).reverse(),
-            y: obj.otu_ids.slice(0,10).map((otu_id) => `OTU ${otu_id}`).reverse(),
-            text: obj.otu_labels.slice(0,10).reverse(),
-            type: "bar",
-            marker: {
-                color: "#A51C42"
-            },
-            orientation: "h"
-        }];
-
-        let layout = {
-            title: {
-                text: "<b>Price range</b><br>(in CAN $)",
-                font: { size: 24 },
-                pad: { b: 20 } // Add padding to the bottom of the title
-            }
-        };
-        
-        // Use Plotly to plot the data in a bar chart
-        Plotly.newPlot("bar", trace, layout);
-=======
     // Count the occurrences of each "made_in" value
     let counts = {};
     cleanedData.forEach((made_in) => {
       counts[made_in] = (counts[made_in] || 0) + 1;
->>>>>>> Stashed changes
     });
 
     // Convert the counts object into an array of objects
@@ -201,13 +153,8 @@ function gauge(selectedValue) {
             type: "indicator", 
             mode: "gauge+number",
             gauge: {
-<<<<<<< Updated upstream
-                axis: {range: [null, 10]}, 
-                bar: {color: "rgb(76,189,157)"},
-=======
                 axis: {range: [null, 0.3]}, 
                 bar: {color: "rgb(68,166,198)"},
->>>>>>> Stashed changes
                 steps: [
                     { range: [0, 1], color: "rgb(238,234,210)" },
                     { range: [1, 2], color: "rgb(232,227,196)" },
