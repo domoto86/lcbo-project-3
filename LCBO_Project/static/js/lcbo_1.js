@@ -1,5 +1,6 @@
 // The url with data
-const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json"
+const url1 = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_1.json"
+const url2 = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_2.json"
 // const url = "/api/data"
 // Display the default plots
 function init() {
@@ -8,11 +9,11 @@ function init() {
     let dropdownMenu = d3.select("#selDataset");
 
     // Fetch the JSON data and console log it
-    d3.json(url).then((data) => {
-        console.log(`Data: ${data}`);
+    d3.json(url1).then((data1) => {
+        console.log(data1);
 
         // An array of id names
-        let names = data.names;
+        let names = data1.name;
 
         // Iterate through the names Array
         names.forEach((name) => {
@@ -35,15 +36,17 @@ function init() {
 // Make the demographics panel
 function demo(selectedValue) {
     // Fetch the JSON data and console log it
-    d3.json(url).then((data) => {
-        console.log(`Data: ${data}`);
+    d3.json(url2).then((data2) => {
+        console.log(data2);
 
         // An array of metadata objects
-        let metadata = data.metadata;
+        let metaname = data2;
+
+        console.log(metaname);
         
         // Filter data where id = selected value after converting their types 
         // (bc meta.id is in integer format and selectValue from is in string format)
-        let filteredData = metadata.filter((meta) => meta.id == selectedValue);
+        let filteredData = metaname.filter((meta) => meta.name == selectedValue);
       
         // Assign the first object to obj variable
         let obj = filteredData[0]
@@ -58,7 +61,9 @@ function demo(selectedValue) {
         // Iterate through the entries array
         // Add a h5 child element for each key-value pair to the div with id sample-metadata
         entries.forEach(([key,value]) => {
+            if (key !== "lat" && key !== "lon"){
             d3.select("#sample-metadata").append("h5").text(`${key}: ${value}`);
+            }
         });
 
         // Log the entries Array
@@ -68,17 +73,18 @@ function demo(selectedValue) {
   
 
 // Make the bar chart
-function bar(selectedValue) {
-    // Fetch the JSON data and console log it
-    d3.json(url).then((data) => {
-        console.log(`Data: ${data}`);
+function bar() {
+  // Fetch the JSON data and console log it
+  d3.json(url1).then((data) => {
+    console.log(data);
 
-        // An array of sample objects
-        let samples = data.samples;
+    // Extract the "made_in" array from the data
+    let madeInData = data.made_in;
 
-        // Filter data where id = selected value 
-        let filteredData = samples.filter((sample) => sample.id === selectedValue);
+    // Clean up the data by removing leading/trailing spaces
+    let cleanedData = madeInData.map((made_in) => made_in.trim());
 
+<<<<<<< Updated upstream
         // Assign the first object to obj variable
         let obj = filteredData[0];
         
@@ -105,56 +111,65 @@ function bar(selectedValue) {
         
         // Use Plotly to plot the data in a bar chart
         Plotly.newPlot("bar", trace, layout);
+=======
+    // Count the occurrences of each "made_in" value
+    let counts = {};
+    cleanedData.forEach((made_in) => {
+      counts[made_in] = (counts[made_in] || 0) + 1;
+>>>>>>> Stashed changes
     });
+
+    // Convert the counts object into an array of objects
+    let countData = Object.keys(counts).map((made_in) => ({
+      made_in: made_in,
+      count: counts[made_in]
+    }));
+
+    // Sort the countData array by count in descending order
+    countData.sort((a, b) => b.count - a.count);
+
+    // Slice the top 10 entries for the chart
+    let slicedData = countData.slice(0, 10);
+
+    // Extract the "made_in" and "count" values for the chart
+    let xValues = countData.map((entry) => entry.count);
+    let yValues = countData.map((entry) => entry.made_in);
+
+    // Create the trace for the horizontal bar chart
+    let trace = [{
+      x: xValues,
+      y: yValues,
+      type: "bar",
+      orientation: "h",
+      marker: {
+        color: "rgb(166, 172, 237)"
+      }
+    }];
+
+    // Define the layout options for the chart
+    let layout = {
+      title: "Total of Wines by Country",
+      xaxis: { title: "" },
+      yaxis: { title: "" },
+      margin: { t: 40, r: 10, b: 40, l: 10 }
+    };
+
+    // Use Plotly to plot the data in a bar chart
+    Plotly.newPlot("bar", trace, layout);
+  });
 }
   
-// Make the bubble chart
-// function bubble(selectedValue) {
-//     // Fetch the JSON data and console log it
-//     d3.json(url).then((data) => {
-
-//         // An array of sample objects
-//         let samples = data.samples;
-    
-//         // Filter data where id = selected value 
-//         let filteredData = samples.filter((sample) => sample.id === selectedValue);
-    
-//         // Assign the first object to obj variable
-//         let obj = filteredData[0];
-        
-//         // Trace for the data for the bubble chart
-//         let trace = [{
-//             x: obj.otu_ids,
-//             y: obj.sample_values,
-//             text: obj.otu_labels,
-//             mode: "markers",
-//             marker: {
-//                 size: obj.sample_values,
-//                 color: obj.otu_ids,
-//                 colorscale: "Sunset"
-//             }
-//         }];
-    
-//         // Apply the x-axis lengend to the layout
-//         let layout = {
-//             xaxis: {title: "OTU ID"}
-//         };
-    
-//         // Use Plotly to plot the data in a bubble chart
-//         Plotly.newPlot("bubble", trace, layout);
-//     });
-// }
 
 // Make the gauge chart 
 function gauge(selectedValue) {
     // Fetch the JSON data and console log it 
-    d3.json(url).then((data) => {
+    d3.json(url2).then((data) => {
         // An array of metadata objects
-        let metadata = data.metadata;
+        let metadata = data;
         
         // Filter data where id = selected value after converting their types 
         // (bc meta.id is in integer format and selectValue from is in string format)
-        let filteredData = metadata.filter((meta) => meta.id == selectedValue);
+        let filteredData = metadata.filter((meta) => meta.name == selectedValue);
       
         // Assign the first object to obj variable
         let obj = filteredData[0]
@@ -162,13 +177,18 @@ function gauge(selectedValue) {
         // Trace for the data for the gauge chart
         let trace = [{
             domain: { x: [0, 1], y: [0, 1] },
-            value: obj.wfreq,
+            value: obj.alcohol_vol,
             title: { text: "<b>Alcohol by Volume</b><br>(in %)", font: {size: 24}},
             type: "indicator", 
             mode: "gauge+number",
             gauge: {
+<<<<<<< Updated upstream
                 axis: {range: [null, 10]}, 
                 bar: {color: "rgb(76,189,157)"},
+=======
+                axis: {range: [null, 0.3]}, 
+                bar: {color: "rgb(68,166,198)"},
+>>>>>>> Stashed changes
                 steps: [
                     { range: [0, 1], color: "rgb(238,234,210)" },
                     { range: [1, 2], color: "rgb(232,227,196)" },
@@ -189,10 +209,17 @@ function gauge(selectedValue) {
     });
 }
 
+
+
+
+
+
+
+
+
 // Toggle to new plots when option changed
 function optionChanged(selectedValue) {
     demo(selectedValue);
-    bar(selectedValue);
     // bubble(selectedValue);
     gauge(selectedValue)
 }
