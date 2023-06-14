@@ -1,6 +1,12 @@
+<<<<<<< Updated upstream
 // The url with data
 const url1 = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_1.json"
 const url2 = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_2.json"
+=======
+// // The url with data
+const url = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_wines.json"
+
+>>>>>>> Stashed changes
 // const url = "/api/data"
 // Display the default plots
 function init() {
@@ -9,11 +15,19 @@ function init() {
     let dropdownMenu = d3.select("#selDataset");
 
     // Fetch the JSON data and console log it
+<<<<<<< Updated upstream
     d3.json(url1).then((data1) => {
         console.log(data1);
 
         // An array of id names
         let names = data1.name;
+=======
+    d3.json(url).then((data) => {
+        console.log(data);
+
+        // An array of id names
+        let names = data.Name;
+>>>>>>> Stashed changes
 
         // Iterate through the names Array
         names.forEach((name) => {
@@ -36,8 +50,13 @@ function init() {
 // Make the demographics panel
 function demo(selectedValue) {
     // Fetch the JSON data and console log it
+<<<<<<< Updated upstream
     d3.json(url2).then((data2) => {
         console.log(data2);
+=======
+    d3.json(url).then((data) => {
+        console.log(data);
+>>>>>>> Stashed changes
 
         // An array of metadata objects
         let metaname = data2;
