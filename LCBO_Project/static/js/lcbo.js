@@ -125,16 +125,16 @@ let myMap = L.map("map", {
     // Conditionals for country gdp_pc
     let color = "";
     if (countries[i].gdp_pc > 100000) {
-      color = "yellow";
+      color = "#A51C42";
     }
     else if (countries[i].gdp_pc > 75000) {
-      color = "blue";
+      color = "#D8B438";
     }
     else if (countries[i].gdp_pc > 50000) {
-      color = "green";
+      color = "#E3DCB6";
     }
     else {
-      color = "violet";
+      color = "#612E42";
     }
   
     // Add circles to the map.

@@ -90,13 +90,21 @@ function bar(selectedValue) {
             text: obj.otu_labels.slice(0,10).reverse(),
             type: "bar",
             marker: {
-                color: "rgb(166,172,237)"
+                color: "#A51C42"
             },
             orientation: "h"
         }];
+
+        let layout = {
+            title: {
+                text: "<b>Price range</b><br>(in CAN $)",
+                font: { size: 24 },
+                pad: { b: 20 } // Add padding to the bottom of the title
+            }
+        };
         
         // Use Plotly to plot the data in a bar chart
-        Plotly.newPlot("bar", trace);
+        Plotly.newPlot("bar", trace, layout);
     });
 }
   
@@ -160,18 +168,18 @@ function gauge(selectedValue) {
             mode: "gauge+number",
             gauge: {
                 axis: {range: [null, 10]}, 
-                bar: {color: "rgb(68,166,198)"},
+                bar: {color: "rgb(76,189,157)"},
                 steps: [
-                    { range: [0, 1], color: "rgb(233,245,248)" },
-                    { range: [1, 2], color: "rgb(218,237,244)" },
-                    { range: [2, 3], color: "rgb(203,230,239)" },
-                    { range: [3, 4], color: "rgb(188,223,235)" },
-                    { range: [4, 5], color: "rgb(173,216,230)" },
-                    { range: [5, 6], color: "rgb(158,209,225)" },
-                    { range: [6, 7], color: "rgb(143,202,221)" },
-                    { range: [7, 8], color: "rgb(128,195,216)" },
-                    { range: [8, 9], color: "rgb(113,187,212)" },
-                    { range: [9, 10], color: "rgb(98,180,207)" }
+                    { range: [0, 1], color: "rgb(238,234,210)" },
+                    { range: [1, 2], color: "rgb(232,227,196)" },
+                    { range: [2, 3], color: "rgb(227,220,182)" },
+                    { range: [3, 4], color: "rgb(222,213,168)" },
+                    { range: [4, 5], color: "rgb(216,206,154))" },
+                    { range: [5, 6], color: "rgb(211,200,139)" },
+                    { range: [6, 7], color: "rgb(205,193,125)" },
+                    { range: [7, 8], color: "rgb(200,186,111)" },
+                    { range: [8, 9], color: "rgb(194,179,97)" },
+                    { range: [9, 10], color: "rgb(189,172,83)" }
                 ]
             }
         }];
