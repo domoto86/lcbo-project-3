@@ -75,7 +75,6 @@ function demo(selectedValue) {
     });
   }
   
-
 // Make the bar chart
 function bar() {
   // Fetch the JSON data and console log it
