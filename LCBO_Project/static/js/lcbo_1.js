@@ -1,12 +1,6 @@
-<<<<<<< Updated upstream
 // The url with data
 const url1 = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_1.json"
 const url2 = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_2.json"
-=======
-// // The url with data
-const url = "https://raw.githubusercontent.com/domoto86/lcbo-project-3/main/lcbo_wines.json"
-
->>>>>>> Stashed changes
 // const url = "/api/data"
 // Display the default plots
 function init() {
@@ -15,19 +9,11 @@ function init() {
     let dropdownMenu = d3.select("#selDataset");
 
     // Fetch the JSON data and console log it
-<<<<<<< Updated upstream
     d3.json(url1).then((data1) => {
         console.log(data1);
 
         // An array of id names
         let names = data1.name;
-=======
-    d3.json(url).then((data) => {
-        console.log(data);
-
-        // An array of id names
-        let names = data.Name;
->>>>>>> Stashed changes
 
         // Iterate through the names Array
         names.forEach((name) => {
@@ -50,13 +36,8 @@ function init() {
 // Make the demographics panel
 function demo(selectedValue) {
     // Fetch the JSON data and console log it
-<<<<<<< Updated upstream
     d3.json(url2).then((data2) => {
         console.log(data2);
-=======
-    d3.json(url).then((data) => {
-        console.log(data);
->>>>>>> Stashed changes
 
         // An array of metadata objects
         let metaname = data2;
@@ -79,11 +60,15 @@ function demo(selectedValue) {
         
         // Iterate through the entries array
         // Add a h5 child element for each key-value pair to the div with id sample-metadata
-        entries.forEach(([key,value]) => {
-            if (key !== "lat" && key !== "lon"){
-            d3.select("#sample-metadata").append("h5").text(`${key}: ${value}`);
+        entries.forEach(([key, value]) => {
+            if (key !== "lat" && key !== "lon") {
+              let formattedValue = value;
+              if (key === "savings" || key === "regular_price" || key === "sale_price") {
+                formattedValue = "$" + value;
+              }
+              d3.select("#sample-metadata").append("h5").html(`<strong>${key}</strong>: ${formattedValue}`);
             }
-        });
+          });
 
         // Log the entries Array
         console.log(entries);
@@ -103,39 +88,10 @@ function bar() {
     // Clean up the data by removing leading/trailing spaces
     let cleanedData = madeInData.map((made_in) => made_in.trim());
 
-<<<<<<< Updated upstream
-        // Assign the first object to obj variable
-        let obj = filteredData[0];
-        
-        // Trace for the data for the horizontal bar chart
-        let trace = [{
-            // Slice the top 10 otus
-            x: obj.sample_values.slice(0,10).reverse(),
-            y: obj.otu_ids.slice(0,10).map((otu_id) => `OTU ${otu_id}`).reverse(),
-            text: obj.otu_labels.slice(0,10).reverse(),
-            type: "bar",
-            marker: {
-                color: "#A51C42"
-            },
-            orientation: "h"
-        }];
-
-        let layout = {
-            title: {
-                text: "<b>Price range</b><br>(in CAN $)",
-                font: { size: 24 },
-                pad: { b: 20 } // Add padding to the bottom of the title
-            }
-        };
-        
-        // Use Plotly to plot the data in a bar chart
-        Plotly.newPlot("bar", trace, layout);
-=======
     // Count the occurrences of each "made_in" value
     let counts = {};
     cleanedData.forEach((made_in) => {
       counts[made_in] = (counts[made_in] || 0) + 1;
->>>>>>> Stashed changes
     });
 
     // Convert the counts object into an array of objects
@@ -170,7 +126,7 @@ function bar() {
       title: "Total of Wines by Country",
       xaxis: { title: "" },
       yaxis: { title: "" },
-      margin: { t: 40, r: 10, b: 40, l: 10 }
+    margin: { l: 150 }
     };
 
     // Use Plotly to plot the data in a bar chart
@@ -193,33 +149,21 @@ function gauge(selectedValue) {
         // Assign the first object to obj variable
         let obj = filteredData[0]
 
+        let formattedValue = obj.alcohol_vol * 100;
+
         // Trace for the data for the gauge chart
         let trace = [{
             domain: { x: [0, 1], y: [0, 1] },
-            value: obj.alcohol_vol,
+            value: formattedValue,
             title: { text: "<b>Alcohol by Volume</b><br>(in %)", font: {size: 24}},
             type: "indicator", 
             mode: "gauge+number",
             gauge: {
-<<<<<<< Updated upstream
-                axis: {range: [null, 10]}, 
-                bar: {color: "rgb(76,189,157)"},
-=======
-                axis: {range: [null, 0.3]}, 
-                bar: {color: "rgb(68,166,198)"},
->>>>>>> Stashed changes
-                steps: [
-                    { range: [0, 1], color: "rgb(238,234,210)" },
-                    { range: [1, 2], color: "rgb(232,227,196)" },
-                    { range: [2, 3], color: "rgb(227,220,182)" },
-                    { range: [3, 4], color: "rgb(222,213,168)" },
-                    { range: [4, 5], color: "rgb(216,206,154))" },
-                    { range: [5, 6], color: "rgb(211,200,139)" },
-                    { range: [6, 7], color: "rgb(205,193,125)" },
-                    { range: [7, 8], color: "rgb(200,186,111)" },
-                    { range: [8, 9], color: "rgb(194,179,97)" },
-                    { range: [9, 10], color: "rgb(189,172,83)" }
-                ]
+                axis: {
+                    range: [null, 30]
+                }, 
+                bar: {color: "rgb(102,0,51)"}
+               
             }
         }];
 
@@ -227,14 +171,6 @@ function gauge(selectedValue) {
          Plotly.newPlot("gauge", trace);
     });
 }
-
-
-
-
-
-
-
-
 
 // Toggle to new plots when option changed
 function optionChanged(selectedValue) {
