@@ -19,6 +19,19 @@ border: 1px solid black;
 border-radius: 8px;
 height: 400px;
 width: 100%
-
-
 }
+
+#gauge {
+  position:relative;
+  top: 10px;
+  left: 5px;
+  right: 200px;
+  height: 350px;
+  width: 100%
+  }
+
+#bar {
+  position:relative;
+  height: 400px;
+  width: 100%
+  }

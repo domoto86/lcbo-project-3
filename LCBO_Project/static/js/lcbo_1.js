@@ -175,14 +175,6 @@ function gauge(selectedValue) {
     });
 }
 
-
-
-
-
-
-
-
-
 // Toggle to new plots when option changed
 function optionChanged(selectedValue) {
     demo(selectedValue);
