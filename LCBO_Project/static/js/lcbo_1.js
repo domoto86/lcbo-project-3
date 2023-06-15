@@ -163,18 +163,7 @@ function gauge(selectedValue) {
                     range: [null, 30]
                 }, 
                 bar: {color: "rgb(102,0,51)"}
-                // steps: [
-                //     { range: [0, 1], color: "rgb(238,234,210)" },
-                //     { range: [1, 2], color: "rgb(232,227,196)" },
-                //     { range: [2, 3], color: "rgb(227,220,182)" },
-                //     { range: [3, 4], color: "rgb(222,213,168)" },
-                //     { range: [4, 5], color: "rgb(216,206,154))" },
-                //     { range: [5, 6], color: "rgb(211,200,139)" },
-                //     { range: [6, 7], color: "rgb(205,193,125)" },
-                //     { range: [7, 8], color: "rgb(200,186,111)" },
-                //     { range: [8, 9], color: "rgb(194,179,97)" },
-                //     { range: [9, 10], color: "rgb(189,172,83)" }
-                // ]
+               
             }
         }];
 
